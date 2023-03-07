@@ -59,13 +59,15 @@ public abstract class LeapArray<T> {
      * @param intervalInMs the total time interval of this {@link LeapArray} in milliseconds
      */
     public LeapArray(int sampleCount, int intervalInMs) {
+        // sampleCount = 2
+        // intervalInMs = 1000 ms
         AssertUtil.isTrue(sampleCount > 0, "bucket count is invalid: " + sampleCount);
         AssertUtil.isTrue(intervalInMs > 0, "total time interval of the sliding window should be positive");
         AssertUtil.isTrue(intervalInMs % sampleCount == 0, "time span needs to be evenly divided");
 
-        this.windowLengthInMs = intervalInMs / sampleCount;
-        this.intervalInMs = intervalInMs;
-        this.intervalInSecond = intervalInMs / 1000.0;
+        this.windowLengthInMs = intervalInMs / sampleCount; // 窗口长度为 500 ms
+        this.intervalInMs = intervalInMs; // 1000 ms
+        this.intervalInSecond = intervalInMs / 1000.0; //
         this.sampleCount = sampleCount;
 
         this.array = new AtomicReferenceArray<>(sampleCount);
@@ -117,9 +119,9 @@ public abstract class LeapArray<T> {
         if (timeMillis < 0) {
             return null;
         }
-
+        // 确认当前时间节点应该取哪一个下标
         int idx = calculateTimeIdx(timeMillis);
-        // Calculate current bucket start time.
+        // Calculate current bucket start time. ----> 确认windowWrap的开始时间
         long windowStart = calculateWindowStart(timeMillis);
 
         /*
