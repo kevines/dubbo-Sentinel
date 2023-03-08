@@ -121,7 +121,9 @@ public abstract class LeapArray<T> {
         }
         // 确认当前时间节点应该取哪一个下标
         int idx = calculateTimeIdx(timeMillis);
-        // Calculate current bucket start time. ----> 确认windowWrap的开始时间
+        // Calculate current bucket start time. ----> 确认当前windowWrap的开始时间
+        // ----> 当前时间若是没有经过一个 window 的时间, 它的 windowWrapStart 是一样的
+        // 所以是通过 windowStart 来判断是否是同一个 bucket
         long windowStart = calculateWindowStart(timeMillis);
 
         /*
@@ -133,7 +135,7 @@ public abstract class LeapArray<T> {
          */
         while (true) {
             WindowWrap<T> old = array.get(idx);
-            if (old == null) {
+            if (old == null) { // 下标拿 windowWrap 时不存在就去创建
                 /*
                  *     B0       B1      B2    NULL      B4
                  * ||_______|_______|_______|_______|_______||___

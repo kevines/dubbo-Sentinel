@@ -127,34 +127,34 @@
         <profile>
             <id>prod</id>
             <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-shade-plugin</artifactId>
-                        <version>${maven.shade.version}</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>shade</goal>
-                                </goals>
-                                <configuration>
-                                    <finalName>sentinel-envoy-rls-token-server</finalName>
-                                    <transformers>
-                                        <transformer
-                                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                            <mainClass>
-                                                com.alibaba.csp.sentinel.cluster.server.envoy.rls.SentinelEnvoyRlsServer
-                                            </mainClass>
-                                        </transformer>
-                                        <transformer
-                                                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                                    </transformers>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-shade-plugin</artifactId>-->
+<!--                        <version>${maven.shade.version}</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>shade</goal>-->
+<!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <finalName>sentinel-envoy-rls-token-server</finalName>-->
+<!--                                    <transformers>-->
+<!--                                        <transformer-->
+<!--                                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+<!--                                            <mainClass>-->
+<!--                                                com.alibaba.csp.sentinel.cluster.server.envoy.rls.SentinelEnvoyRlsServer-->
+<!--                                            </mainClass>-->
+<!--                                        </transformer>-->
+<!--                                        <transformer-->
+<!--                                                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>-->
+<!--                                    </transformers>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
             </build>
         </profile>
     </profiles>
